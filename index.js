@@ -41,8 +41,9 @@ app.post("/projects", (req, res) => {
 });
 
 app.post("/delete", (req, res) => {
-  const id = req.body.id
-  projectModel.deleteOne({_id: id})
+  projectModel.find({_id: req.body.id}).delete.then(
+    res.send("done")
+  )
 })
 
 app.use('/login', (req, res) => {
