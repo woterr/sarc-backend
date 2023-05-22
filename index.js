@@ -41,9 +41,10 @@ app.post("/projects", (req, res) => {
 });
 
 app.use('/login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
+  if(req.body.password === process.env.PASSWORD &&
+    req.body.user === process.env.USER) {
+    res.send({ "token": "test123"})
+  }
 });
 
 app.get("/designs", (req, res) => {
