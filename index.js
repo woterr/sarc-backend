@@ -20,7 +20,7 @@ mongoose
 // routes
 
 app.post("/contact", (req, res) => {
-  sendEmbed(req.body);
+  // sendEmbed(req.body);
 });
 app.post("/projects", (req, res) => {
   if (
@@ -39,7 +39,7 @@ app.get("/designs", (req, res) => {
 
 app.get("/projects", (req, res) => {
   projectModel.find({}, function (err, resPost) {
-    // console.log(resPost);
+    console.log(resPost);
     res.send(resPost);
   });
 });
