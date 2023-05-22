@@ -40,17 +40,11 @@ app.post("/projects", (req, res) => {
   }
 });
 
-app.post("/admin", (req, res) => {
-  const { user, password } = req.body
-  
-  if (user !== process.env.USER ) {
-    return res.status(400).json({ message: "Username is incorrect"})
-  } else if (user !== process.env.PASSWORD) {
-    return res.status(400).json({ message: "Password is incorrect"})
-  }
-  
-  res.json({ message: "Authenticated", token: TokenGenerate()})
-})
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
 
 app.get("/designs", (req, res) => {
   res.send("Deisgns api for woter");
