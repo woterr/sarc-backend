@@ -7,15 +7,16 @@ const cors = require("cors");
 const { projectUpload } = require("./project.js");
 const projectModel = require("./Schemas/project.js");
 require("dotenv").config();
+const CryptoJS = require('crypto-js');
 
 app.use(express.static("client/dist"));
 app.use(express.json());
 app.use(cors());
 
-function TokenGenerate() {
-  const rand = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
-  return rand
-}
+const encryptWithAES = (text) => {
+  const passphrase = process.env.PASSWORD;
+  return CryptoJS.AES.encrypt(text, passphrase).toString();
+};
 
 // Mongo connection
 mongoose
@@ -48,7 +49,7 @@ app.post("/projects", (req, res) => {
 app.use('/login', (req, res) => {
   if(req.body.password === process.env.PASSWORD &&
     req.body.user === process.env.USER) {
-    token = TokenGenerate()
+    const token = encryptWithAES(process.env.SECRET)
     res.json({"token": token})
   }
 });
