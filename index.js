@@ -12,6 +12,11 @@ app.use(express.static("client/dist"));
 app.use(express.json());
 app.use(cors());
 
+function TokenGenerate() {
+  const rand = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+  return rand
+}
+
 // Mongo connection
 mongoose
   .connect(process.env.MONGO_TOKEN)
@@ -43,7 +48,8 @@ app.post("/projects", (req, res) => {
 app.use('/login', (req, res) => {
   if(req.body.password === process.env.PASSWORD &&
     req.body.user === process.env.USER) {
-    res.send({ "token": "test123"})
+    token = TokenGenerate()
+    res.json({"token": token})
   }
 });
 
