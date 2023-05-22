@@ -1,4 +1,6 @@
-{
+{"scripts": {
+    "start": "node ."
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "discord.js": "^14.2.0",
