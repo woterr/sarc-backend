@@ -6,5 +6,6 @@ module.exports = model(
     title: String,
     description: String,
     link: String,
+    timestamp: String
   })
 );

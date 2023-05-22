@@ -6,6 +6,7 @@ async function projectUpload(data) {
       title: data.title,
       description: data.description,
       link: data.link,
+      timestamp: Date.now(),
     })
     .then(console.log("Nice!"));
 }
