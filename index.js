@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const PORT = 5000 || process.env.PORT;
 const cors = require("cors");
 // const { sendEmbed } = require("./requestDiscord");
-const { projectUpload } = require("./project.js");
+const { projectUpload, projectDelete} = require("./project.js");
 const projectModel = require("./Schemas/project.js");
 require("dotenv").config();
 const CryptoJS = require('crypto-js');
@@ -41,9 +41,7 @@ app.post("/projects", (req, res) => {
 });
 
 app.post("/delete", (req, res) => {
-  projectModel.find({_id: req.body.id}).delete.then(
-    res.send("done")
-  )
+  projectDelete(req.body.id)
 })
 
 app.use('/login', (req, res) => {

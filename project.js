@@ -11,4 +11,12 @@ async function projectUpload(data) {
     .then(console.log("Nice!"));
 }
 
-module.exports = { projectUpload };
+async function projectDelete(id) {
+  await projectModel
+    .deleteOne({_id: id
+    })
+    .then(console.log("Delete!"));
+}
+
+
+module.exports = { projectUpload, projectDelete };
