@@ -17,6 +17,13 @@ mongoose
   .connect(process.env.MONGO_TOKEN)
   .then(() => console.log("Connected to mongodb"));
 
+// token gener
+
+function TokenGenerate() {
+  const rand = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+  return rand
+}
+
 // routes
 
 app.post("/contact", (req, res) => {
@@ -32,6 +39,18 @@ app.post("/projects", (req, res) => {
     return;
   }
 });
+
+app.post("/admin", (req, res) => {
+  const { user, password } = req.body
+  
+  if (user !== process.env.USER ) {
+    return res.status(400).json({ message: "Username is incorrect"})
+  } else if (user !== process.env.PASSWORD) {
+    return res.status(400).json({ message: "Password is incorrect"})
+  }
+  
+  res.json({ message: "Authenticated", token: TokenGenerate()})
+})
 
 app.get("/designs", (req, res) => {
   res.send("Deisgns api for woter");
