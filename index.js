@@ -36,14 +36,8 @@ app.post("/contact", (req, res) => {
   // sendEmbed(req.body);
 });
 app.post("/projects", (req, res) => {
-  if (
-    req.body.password === process.env.PASSWORD &&
-    req.body.user === process.env.USER
-  ) {
     projectUpload(req.body);
-  } else {
-    return;
-  }
+  
 });
 
 app.use('/login', (req, res) => {
@@ -53,6 +47,10 @@ app.use('/login', (req, res) => {
     res.send({"token": token})
   }
 });
+app.use("/delete", (req, res) => {
+  const id = req.body.id
+  projectModel.deleteOne({_id: id})
+})
 
 app.get("/designs", (req, res) => {
   res.send("Deisgns api for woter");
