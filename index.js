@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = 5000 || process.env.PORT;
 const cors = require("cors");
-// const { sendEmbed } = require("./requestDiscord");
+const { sendEmbed } = require("./requestDiscord");
 const { projectUpload, projectDelete} = require("./project.js");
 const projectModel = require("./Schemas/project.js");
 require("dotenv").config();
@@ -33,8 +33,9 @@ function TokenGenerate() {
 // routes
 
 app.post("/contact", (req, res) => {
-  // sendEmbed(req.body);
+  sendEmbed(req.body);
 });
+
 app.post("/projects", (req, res) => {
     projectUpload(req.body);
   
@@ -50,10 +51,6 @@ app.use('/login', (req, res) => {
     const token = encryptWithAES(process.env.SECRET)
     res.send({"token": token})
   }
-});
-
-app.get("/designs", (req, res) => {
-  res.send("Deisgns api for woter");
 });
 
 app.get("/projects", (req, res) => {
