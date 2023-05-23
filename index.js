@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const PORT = 5000 || process.env.PORT;
 const cors = require("cors");
 const { sendEmbed } = require("./requestDiscord");
-const { projectUpload, projectDelete} = require("./project.js");
 const projectModel = require("./Schemas/project.js");
 require("dotenv").config();
 const { encrypt } = require('n-krypta');
@@ -28,15 +27,6 @@ const secret_key = "ewby739h2diuwiu"
 app.post("/contact", (req, res) => {
   sendEmbed(req.body);
 });
-
-app.post("/projects", (req, res) => {
-    projectUpload(req.body);
-  
-});
-
-app.post("/delete", (req, res) => {
-  projectDelete(req.body.id)
-})
 
 app.use('/login', (req, res) => {
   if(req.body.password === process.env.PASSWORD &&
