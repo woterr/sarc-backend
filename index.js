@@ -21,7 +21,7 @@ mongoose
 
 // token gener
 
-
+const secret_key = "ewby739h2diuwiu"
 
 // routes
 
@@ -41,7 +41,7 @@ app.post("/delete", (req, res) => {
 app.use('/login', (req, res) => {
   if(req.body.password === process.env.PASSWORD &&
     req.body.user === process.env.USER) {
-    const token = encrypt(process.env.SECRET)
+    const token = encrypt(process.env.SECRET, secret_key)
     res.send({"token": token})
   }
 });
