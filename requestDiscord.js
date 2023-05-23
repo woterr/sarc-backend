@@ -11,14 +11,14 @@ client.once("ready", async () => {
   //   user.send("w");
 });
 
-const embed = new EmbedBuilder().setColor("#fff").setTimestamp();
+const embed = new EmbedBuilder().setColor("#ffffff").setTimestamp();
 
 function sendEmbed(data) {
   embed.setDescription(
     `Message from **${
       data.name ? data.name : "Unknown"
     }**,
-    **\nEmail: **${data.email}**\n\n${data.message}`
+    \nEmail: **${data.email}**\n\n${data.message}`
   );
   user.send({ embeds: [embed] });
 }

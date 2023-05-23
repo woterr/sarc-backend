@@ -49,7 +49,7 @@ app.use('/login', (req, res) => {
   if(req.body.password === process.env.PASSWORD &&
     req.body.user === process.env.USER) {
     const token = encryptWithAES(process.env.SECRET)
-    res.send({"token": token})
+    res.send({"token": "adminRaj10203948476527helpmeihatethis"})
   }
 });
 
