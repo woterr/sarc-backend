@@ -7,7 +7,7 @@ let user;
 client.once("ready", async () => {
   console.log("Bot is online");
   const guild = client.guilds.cache.get("923210019632201808");
-  user = await guild.members.fetch("581048093412425750"); // raj: 261816312462835712
+  user = await guild.members.fetch("261816312462835712"); // raj: 261816312462835712
   //   user.send("w");
 });
 
