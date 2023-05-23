@@ -13,10 +13,6 @@ app.use(express.static("client/dist"));
 app.use(express.json());
 app.use(cors());
 
-const encryptWithAES = (text) => {
-  const passphrase = process.env.PASSWORD;
-  return CryptoJS.AES.encrypt(text, passphrase).toString();
-};
 
 // Mongo connection
 mongoose
@@ -25,10 +21,12 @@ mongoose
 
 // token gener
 
-function TokenGenerate() {
-  const rand = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
-  return rand
+function encrypt(text) {
+  
+  const base64data = Utilities.base64Encode(text, Utilities.Charset.UTF_8);
+  return base64data;
 }
+
 
 // routes
 
@@ -48,8 +46,8 @@ app.post("/delete", (req, res) => {
 app.use('/login', (req, res) => {
   if(req.body.password === process.env.PASSWORD &&
     req.body.user === process.env.USER) {
-    const token = encryptWithAES(process.env.SECRET)
-    res.send({"token": "adminRaj10203948476527helpmeihatethis"})
+    const token = encrypt(process.env.SECRET)
+    res.send({"token": token})
   }
 });
 
