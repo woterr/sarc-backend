@@ -7,7 +7,7 @@ const { sendEmbed } = require("./requestDiscord");
 const { projectUpload, projectDelete} = require("./project.js");
 const projectModel = require("./Schemas/project.js");
 require("dotenv").config();
-const CryptoJS = require('crypto-js');
+const { encrypt } = require('n-krypta');
 
 app.use(express.static("client/dist"));
 app.use(express.json());
@@ -21,11 +21,6 @@ mongoose
 
 // token gener
 
-function encrypt(text) {
-  
-  const base64data = Utilities.base64Encode(text, Utilities.Charset.UTF_8);
-  return base64data;
-}
 
 
 // routes
