@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT;
 const cors = require("cors");
 const { sendEmbed } = require("./requestDiscord");
 const projectModel = require("./Schemas/project.js");
